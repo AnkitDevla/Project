@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>OnShop | Home</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg  background mb-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">OnShop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/shop/all/all/all/">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Cart</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/pic1.jpg'%}" width="100%" height="550px" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/pic2.jpg'%}" width="100%" height="550px" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/pic3.jpg'%}" width="100%" height="550px" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/pic5.jpg'%}" width="100%" height="550px" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="container-fluid background text-light mt-2 text-center p-3">
+        <h1>Product Section</h1>
+    </div>
+    <div class="container-fluid mt-20">
+        <div class="row mt-2">
+            {% for i in Data %}
+            <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="card">
+                    <img src="{{i.pic1.url}}" class="card-img-top" style="height: 300px;" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title" style="height: 50px;">{{i.name}}</h5>
+                        <p class="card-text">&nbsp;<strike>Rs{{i.basePrice}}</strike>&nbsp;&nbsp;Rs&nbsp;{{i.finalPrice}}</p>
+                        <a href="#" class="btn background text-light w-100 mb-1">Add To Cart</a>
+                        <a href="/product/{{i.id}}/" class="btn background text-light  w-100 mb-1">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+    <footer class="container-fluid background text-light p-3 text-center mt-2">
+        <p>copyright@OnShop</p>
+        <form class="d-flex w-50" style="margin-left: 25%;">
+            <input class="form-control me-2" type="text" placeholder="Enter Email Id " aria-label="submit">
+            <button class="btn btn-outline-light" type="submit">Subscribe</button>
+        </form>
+    </footer>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+</body>
+</html>
